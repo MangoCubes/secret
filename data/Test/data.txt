@@ -1,0 +1,58 @@
+{"data": 
+  {"1": {
+    "template": "Password",
+    "datatype": "Password",
+    "Note": "First data structure for testing",
+    "extra": {
+      "DataOne": "This is a string", 
+      "DataTwo": "Another string",
+      "OptionOne": true
+    }
+    }, "2": {
+    "template": "Identity",
+    "datatype": "Identity",
+    "Name": "Luke Carter", 
+    "Telephone Number": "826347287",
+    "OptionOne": true, 
+    "Note": "A virtual identity"
+    }
+  }, "templates": {
+    "Password": {
+      "sections": {
+        "Section1": {
+          "Username": "text",
+          "Password": "pw"
+        }, "Section2": {
+          "Notes": "notes"
+        }
+      }
+    }, "Identity": {
+      "sections": {
+        "Section3": {
+          "Name": "text",
+          "Telephone Number": "numbers"
+        }, "Section4": {
+          "Notes": "notes"
+        }
+      }
+    }
+  }, "field": {
+    "text": {
+      "name": "Text Field",
+      "hide": false,
+      "regex": "$.+^"
+    }, "pw": {
+      "name": "Password",
+      "hide": true,
+      "regex": "$.+^"
+    }, "notes": {
+      "name": "Notes",
+      "hide": false,
+      "regex": "$.+^"
+    }, "numbers": {
+      "name": "Numbers",
+      "hide": false,
+      "regex": "$\d+^"
+    }
+  }
+}
