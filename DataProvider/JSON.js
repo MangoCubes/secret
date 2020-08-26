@@ -1,12 +1,25 @@
 //Storing data as JSON is purely for testing purpose. Do not use it for production.
-
+const DataProvider = require("./DataProvider.js").DataProvider;
 
 class JSONProvider extends DataProvider{
-    setData(self, data){
-        self._data = data;
+    setData(data){
+        this._data = data;
+    }
+
+    setTemplates(templates){
+        this._templates = templates;
+    }
+
+    setFields(fields){
+        this._fields = fields
     }
 
     constructor(){
+        super();
+        this._rawData = require("../data/Test/data.json");
+        this.setFields(this._rawData["fields"]);
+        this.setTemplates(this._rawData["templates"]);
+        this.setData(this._rawData["data"]);
     }
     
     getDataById(id){
