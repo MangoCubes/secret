@@ -26,3 +26,7 @@ class JSONProvider extends DataProvider{
         return this._data[`${id}`];
     }
 }
+
+module.exports = {
+    JSONProvider: JSONProvider
+}
