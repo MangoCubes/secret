@@ -16,10 +16,9 @@ class JSONProvider extends DataProvider{
 
     constructor(){
         super();
-        this._rawData = require('../data/Test/data.json');
-        this.setFields(this._rawData['fields']);
-        this.setTemplates(this._rawData['templates']);
-        this.setData(this._rawData['data']);
+        this.setFields(require('../data/Test/fields.json'));
+        this.setTemplates(require('../data/Test/templates.json'));
+        this.setData(require('../data/Test/data.json'));
     }
     
     getDataById(id){
