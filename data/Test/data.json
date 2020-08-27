@@ -1,58 +1,54 @@
 {"data": 
   {"1": {
-    "template": "Password",
-    "datatype": "Password",
-    "Note": "First data structure for testing",
-    "extra": {
-      "DataOne": "This is a string", 
-      "DataTwo": "Another string",
-      "OptionOne": true
-    }
+    "template": 1,
+    "data": ["", "pass1083", "First data structure for testing"]
     }, "2": {
-    "template": "Identity",
-    "datatype": "Identity",
-    "Name": "Luke Carter", 
-    "Telephone Number": "826347287",
-    "OptionOne": true, 
-    "Note": "A virtual identity"
+    "template": 2,
+    "data": ["Luke Carter", "826347287", "A virtual identity"]
     }
   }, "templates": {
-    "Password": {
+    "1": {
+      "name": "Password",
       "sections": {
         "Section1": {
-          "Username": "text",
-          "Password": "pw"
+          "Username": 1,
+          "Password": 2
         }, "Section2": {
-          "Notes": "notes"
+          "Notes": 3
         }
       }
-    }, "Identity": {
+    }, "2": {
+      "name": "Identity",
       "sections": {
         "Section3": {
-          "Name": "text",
-          "Telephone Number": "numbers"
+          "Name": 1,
+          "Telephone Number": 4
         }, "Section4": {
-          "Notes": "notes"
+          "Notes": 3
         }
       }
     }
   }, "fields": {
-    "text": {
+    "1": {
       "name": "Text Field",
       "hide": false,
-      "regex": "$.+^"
-    }, "pw": {
+      "regex": "$.+^",
+      "display": 0
+    }, "2": {
       "name": "Password",
       "hide": true,
-      "regex": "$.+^"
-    }, "notes": {
+      "regex": "$.+^",
+      "display": 0
+    }, "3": {
       "name": "Notes",
       "hide": false,
-      "regex": "$.+^"
-    }, "numbers": {
+      "regex": "$.+^",
+      "display": 0
+    }, "4": {
       "name": "Numbers",
       "hide": false,
-      "regex": "$\\d+^"
+      "regex": "$\\d+^",
+      "display": 0
     }
   }
 }

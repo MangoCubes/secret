@@ -25,6 +25,14 @@ class JSONProvider extends DataProvider{
     getDataById(id){
         return this._data[`${id}`];
     }
+
+    getTemplateById(id){
+        return this._templates[`${id}`];
+    }
+
+    getFieldById(id){
+        return this._fields[`${id}`];
+    }
 }
 
 module.exports = {
