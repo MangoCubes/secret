@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: black;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: #FFFFFF;
+    transition-duration: 0.5s;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.sidebar a:hover {
+    background-color: #505050;
+    transition-duration: 0.5s;
+    color: #FFFFFF;
+}

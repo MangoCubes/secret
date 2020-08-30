@@ -3,6 +3,8 @@ const JSONProvider = require('../DataProvider/JSONProvider').JSONProvider;
 const app = express();
 const pass = require('passport');
 const ls = require('passport-local').Strategy;
+const helmet = require('helmet');
+const path = require('path');
 const port = 80;
 
 app.use(helmet());
@@ -18,11 +20,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    res.send(data);
+    res.sendFile(path.join(__dirname, 'Web', 'home.html'));
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile('./Web/login.html');
+    res.sendFile(path.join(__dirname, 'Web', 'login.html'));
 });
 
 app.post('/login', pass.authenticate('local', {
