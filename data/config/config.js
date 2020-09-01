@@ -12,7 +12,8 @@ var config = {
     "mongoDB": {
         "address": "localhost",
 
-    }
+    },
+    "ioport": 8088
 }
 
 module.exports = {
