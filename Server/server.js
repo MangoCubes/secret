@@ -1,11 +1,18 @@
 const express = require('express');
+const fs = require('fs');
+const https = require('https');
+const app = express();
+const server = https.createServer({
+
+}, app);
+const io = require('socket.io')(https);
 const config = require('../data/config/config.js').configData;
 var data;
 
 if (config.storageType == 'JSON') data = require('../DataProvider/JSONProvider').JSONProvider;
 else if (config.storageType == 'mongodb') data = require('../DataProvider/MongoDBProvider').MongoDBProvider;
 
-const app = express();
+
 const pass = require('passport');
 const ls = require('passport-local').Strategy;
 const helmet = require('helmet');
@@ -34,3 +41,7 @@ app.post('/login', pass.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
 }));
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+});

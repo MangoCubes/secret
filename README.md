@@ -6,6 +6,7 @@ Self hostable encrypted data storage written in JS.
 
 - ☐ Custom themes and layouts
 - ☐ Support MongoDB
+    - ☐ Add support for relational database? If that's possible
 - ☐ Permissions and user groups
 - ☐ External sharing with or without account
 - ☐ Mobile apps
