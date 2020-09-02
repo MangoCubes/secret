@@ -1,6 +1,5 @@
 const passport = require('passport');
 const LocalStrat = require('passport-local').Strategy;
-const Query = require('./Query').Query;
 
 passport.use('login', new LocalStrat({
     usernameField: 'email',

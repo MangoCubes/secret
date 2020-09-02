@@ -1,11 +1,11 @@
-class DataProvider{
+class DataProviderBase{
     constructor() {
-        if (this.constructor == DataProvider) {
+        if (this.constructor == DataProviderBase) {
             throw new Error('Error: Abstract class initiated.');
         }
     }
 }
 
 module.exports = {
-    DataProvider: DataProvider
+    DataProviderBase: DataProviderBase
 }

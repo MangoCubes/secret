@@ -1,25 +1,33 @@
 const express = require('express');
-const fs = require('fs');
-const app = express();
 const config = require('../data/config/config.js').configData;
 const pass = require('../App/strategy').pass;
 
-var data;
-
-if (config.storageType == 'JSON') data = require('../DataProvider/JSONProvider').JSONProvider;
-else if (config.storageType == 'mongodb') data = require('../DataProvider/MongoDBProvider').MongoDBProvider;
+const https = require('https');
+const fs = require('fs');
 
 const helmet = require('helmet');
 const path = require('path');
+
+const options = {
+    key: fs.readFileSync(path.join(__dirname, '../data/config/certs/key.key')),
+    cert: fs.readFileSync(path.join(__dirname, '../data/config/certs/cert.crt'))
+};
+
 const port = 443;
+const app = express();
 
 app.use(helmet());
 
-const server = app.listen(port, () => {
+const server = https.createServer(options, app).listen(port, () => {
     console.log(`Example app listening at ${port}`);
 });
 
 const io = require('socket.io').listen(server);
+
+var data;
+
+if (config.storageType == 'JSON') data = require(path.join(__dirname, '../App/DataProvider/JSONProvider')).JSONProvider;
+else if (config.storageType == 'mongodb') data = require(path.join(__dirname, '../App/DataProvider/MongoDBProvider')).MongoDBProvider;
 
 io.on('connection', (socket) => {
     console.log(`New user detected: ${socket.client.id}`);
