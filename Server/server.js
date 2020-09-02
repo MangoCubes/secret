@@ -2,14 +2,13 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const config = require('../data/config/config.js').configData;
+const pass = require('../App/strategy').pass;
 
 var data;
 
 if (config.storageType == 'JSON') data = require('../DataProvider/JSONProvider').JSONProvider;
 else if (config.storageType == 'mongodb') data = require('../DataProvider/MongoDBProvider').MongoDBProvider;
 
-const pass = require('passport');
-const ls = require('passport-local').Strategy;
 const helmet = require('helmet');
 const path = require('path');
 const port = 443;
@@ -17,7 +16,7 @@ const port = 443;
 app.use(helmet());
 
 const server = app.listen(port, () => {
-    console.log(`Example app listening at https://secret.covrt.co:${port}`);
+    console.log(`Example app listening at ${port}`);
 });
 
 const io = require('socket.io').listen(server);

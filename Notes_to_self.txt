@@ -1,5 +1,0 @@
-
-"display" in field: Decides how data shows up for clients 
-export GPG_TTY=$(tty)
-git commit -S -m ""
-
