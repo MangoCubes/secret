@@ -1,5 +1,5 @@
 //Storing data as JSON is purely for testing purpose. Do not use it for production.
-const DataProvider = require('./DataProvider.js').DataProvider;
+const DataProvider = require('./DataProvider.js.js').DataProvider;
 
 class JSONProvider extends DataProvider{
     setData(data){
