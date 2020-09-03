@@ -24,10 +24,7 @@ const server = https.createServer(options, app).listen(port, () => {
 
 const io = require('socket.io').listen(server);
 
-var data;
-
-if (config.storageType == 'JSON') data = require(path.join(__dirname, '../App/DataProvider/JSONProvider')).JSONProvider;
-else if (config.storageType == 'mongodb') data = require(path.join(__dirname, '../App/DataProvider/MongoDBProvider')).MongoDBProvider;
+var data = require('../App/DataProvider/DataProvider').dataProvider;
 
 io.on('connection', (socket) => {
     console.log(`New user detected: ${socket.client.id}`);
