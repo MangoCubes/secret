@@ -19,6 +19,8 @@
   - This is how permission and data visibility control would work
 - "_default" is a special variable that applies certain properties to all data within the same level and below
 
+### Possible use cases
+
 ## Commands
 
 - For GPG signing

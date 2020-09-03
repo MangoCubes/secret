@@ -2,7 +2,8 @@
   "1": {
     "data": {
       "_default": {
-        "permission": 1
+        "permission": 1,
+        "visibility": "self"
       },
       "Username": {
         "field": 1,
@@ -20,6 +21,10 @@
   },
   "2": {
     "data": {
+      "_default": {
+        "permission": 1,
+        "visibility": "self"
+      },
       "name": {
         "field": 1,
         "data": "Luke Carter"
@@ -32,6 +37,6 @@
         "field": 1,
         "data": "A virtual identity"
       }
-    }, "permission": {}
+    }
   }
 }
