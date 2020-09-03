@@ -29,3 +29,7 @@
 export GPG_TTY=$(tty)
 git commit -S -m ""
 ```
+
+## Additional notes
+
+- Make smaller commits
