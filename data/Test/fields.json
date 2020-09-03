@@ -3,26 +3,26 @@
     "name": "Text Field",
     "hide": false,
     "regex": "$.+^",
-    "display": 0
+    "behaviour": 0
   }, "2": {
     "name": "Password",
     "hide": true,
     "regex": "$.+^",
-    "display": 0
+    "behaviour": 0
   }, "3": {
     "name": "Notes",
     "hide": false,
     "regex": "$.+^",
-    "display": 0
+    "behaviour": 0
   }, "4": {
     "name": "Numbers",
     "hide": false,
     "regex": "$\\d+^",
-    "display": 0
+    "behaviour": 0
   }, "5": {
     "name": "Boolean",
     "hide": false,
     "regex": "[01]",
-    "display": 0 
+    "behaviour": 0 
   }
 }

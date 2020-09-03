@@ -1,0 +1,18 @@
+{
+  "0": {
+    "username": "admin",
+    "last_login": {
+      "time": "202008032003",
+      "ip": "111.232.191.23"
+    },
+    "permission": 0
+  },
+  "1": {
+    "username": "user",
+    "last_login": {
+      "time": "202008131023",
+      "ip": "223.112.153.218"
+    },
+    "permission": 2
+  }
+}

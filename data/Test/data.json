@@ -1,9 +1,12 @@
 {
   "1": {
     "data": {
+      "_default": {
+        "permission": 1
+      },
       "Username": {
         "field": 1,
-        "data": "MyUserName"
+        "data": "MyUserName"    
       },
       "Password": {
         "field": 2,
@@ -13,7 +16,7 @@
         "field": 5,
         "data": 1
       }
-    }, "permission": {}
+    }
   },
   "2": {
     "data": {
