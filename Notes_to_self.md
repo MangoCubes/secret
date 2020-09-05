@@ -18,6 +18,11 @@
 - "behaviour" in field decides how data shows up for clients based on the data stored within
   - This is how permission and data visibility control would work
 - "_default" is a special variable that applies certain properties to all data within the same level and below
+- "Visibility" indicates who can view this data
+  - "Self" indicates that only the creator can view the data
+  - Any number higher than the creator's permission level represents the permission level required to view the data
+    - This number cannot be set higher than the creator's level
+- Every identification number starts with 1
 
 ### Possible use cases
 

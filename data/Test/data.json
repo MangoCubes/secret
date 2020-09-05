@@ -5,15 +5,18 @@
         "permission": 1,
         "visibility": "self"
       },
-      "Username": {
+      "1": {
+        "name": "Username",
         "field": 1,
         "data": "MyUserName"    
       },
-      "Password": {
+      "2": {
+        "name": "Password",
         "field": 2,
         "data": "pass1083"
       },
-      "Option1": {
+      "3": {
+        "name": "Option1",
         "field": 5,
         "data": 1
       }
@@ -25,15 +28,18 @@
         "permission": 1,
         "visibility": "self"
       },
-      "name": {
+      "1": {
+        "name": "name",
         "field": 1,
         "data": "Luke Carter"
       },
-      "Phone number": {
+      "2": {
+        "name": "Phone number",
         "field": 4,
         "data": "826347287"
       },
-      "Notes": {
+      "3": {
+        "name": "Notes",
         "field": 1,
         "data": "A virtual identity"
       }
