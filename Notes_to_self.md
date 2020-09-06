@@ -26,6 +26,18 @@
 
 ### Possible use cases
 
+## Caddy setup
+
+```
+https://domain.com {
+        reverse_proxy secretarchive:443 {
+                transport http {
+                        tls_insecure_skip_verify
+                }
+        }
+}
+```
+
 ## Commands
 
 - For GPG signing
