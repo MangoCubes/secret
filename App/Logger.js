@@ -31,16 +31,18 @@ class Logger{
         let file = __dirname + '/' + this.dir + '/Users/' + username + 'login.log';
         let now = new Date();
         let str = fs.createWriteStream(file, {flags : 'a+'});
-        this.str.write(`${now}: [INFO] User accessed data with an ID ${data}. Fields with ID ${fieldidarr.join(', ')} were not hidden.`);
+        this.str.write(`${now}: [INFO] User accessed data with an ID ${data}. Fields with ID ${fieldidarr.join(', ')} were visible.`);
     }
 
     modification(username, dataid, before, after){
-
+        
     }
 
     revelation(username, dataid, fieldid){
+        let file = __dirname + '/' + this.dir + '/Users/' + username + 'login.log';
         let now = new Date();
-        this.logfile.write(`${now}: [INFO] ${username} logged in from ${ip}.`);
+        let str = fs.createWriteStream(file, {flags : 'a+'});
+        this.str.write(`${now}: [INFO] User revealed hidden field with ID ${fieldid} from data ${dataid}.);
     }
 }
 
