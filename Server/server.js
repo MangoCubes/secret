@@ -2,23 +2,18 @@ const express = require('express');
 const config = require('../data/config/config.js').configData;
 const pass = require('../App/strategy').pass;
 
-const https = require('https');
+const http = require('http');
 const fs = require('fs');
 
 const helmet = require('helmet');
 const path = require('path');
 
-const options = {
-    key: fs.readFileSync(path.join(__dirname, '../data/config/certs/key.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../data/config/certs/cert.crt'))
-};
-
-const port = 443;
+const port = 80;
 const app = express();
 
 app.use(helmet());
 
-const server = https.createServer(options, app).listen(port, () => {
+const server = http.createServer(app).listen(port, () => {
     console.log(`Example app listening at ${port}`);
 });
 

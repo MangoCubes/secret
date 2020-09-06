@@ -10,10 +10,9 @@ var config = {
     "allowSignup": "false",
     //MongoDB configuration
     "mongoDB": {
-        "address": "localhost",
+        "address": "localhost"
 
-    },
-    "ioport": 8088
+    }
 }
 
 module.exports = {
