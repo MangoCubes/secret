@@ -42,7 +42,7 @@ class Logger{
         let file = __dirname + '/' + this.dir + '/Users/' + username + 'login.log';
         let now = new Date();
         let str = fs.createWriteStream(file, {flags : 'a+'});
-        this.str.write(`${now}: [INFO] User revealed hidden field with ID ${fieldid} from data ${dataid}.);
+        this.str.write(`${now}: [INFO] User revealed hidden field with ID ${fieldid} from data ${dataid}.`);
     }
 }
 
