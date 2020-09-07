@@ -13,6 +13,9 @@ const options = {
     cert: fs.readFileSync(path.join(__dirname, '../data/config/certs/cert.crt'))
 };
 
+const Logger = require('../App/Logger').Logger;
+const log = new Logger;
+
 const port = 443;
 const app = express();
 
@@ -28,6 +31,8 @@ var data = require('../App/DataProvider/DataProvider').dataProvider;
 
 io.on('connection', (socket) => {
     console.log(`New user detected: ${socket.client.id}`);
+    var address = socket.handshake.address;
+    log.connection(toString(address.address) + toString(address.port));
 });
 
 app.get('/', (req, res) => {

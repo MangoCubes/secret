@@ -5,6 +5,7 @@
 ### Logging
 
 - Log should have permission indicator to limit who can view them
+- Log should be rotated according to the config, based on both time and size of the file
 
 ### Permission
 
