@@ -14,7 +14,7 @@ const options = {
 };
 
 const Logger = require('../App/Logger').Logger;
-const log = new Logger;
+const log = new Logger('../data/Logs');
 
 const port = 443;
 const app = express();

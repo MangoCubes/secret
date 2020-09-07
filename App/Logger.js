@@ -1,11 +1,12 @@
 const fs = require('fs');
 
 class Logger{
-    constructor(dir) { //dir is relative location of the log folder location
+    constructor(dir) { //dir is location of the log folder in relation to this file
         this.dir = dir;
-        this.globallog = fs.createWriteStream(__dirname + '/' + this.dir + '/logs.log', {flags : 'a+'});
-        this.userlog = __dirname + '/' + this.dir + 'Users';
-        if(!fs.existsSync(this.userlog)) fs.mkdirSync(this.userlog, { recursive: true });
+        if(!fs.existsSync(this.dir)) fs.mkdirSync(this.dir, { recursive: true }); //If log directory does not exist, create one
+        this.globallog = fs.createWriteStream(__dirname + '/' + this.dir + '/logs.log', {flags : 'a+'}); //Create file write stream for global(and anonymous) log
+        this.userlog = __dirname + '/' + this.dir + '/Users';
+        if(!fs.existsSync(this.userlog)) fs.mkdirSync(this.userlog, { recursive: true }); //If the directory to user specific log does not exist, create one
     }
 
     connection(ip){
