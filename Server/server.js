@@ -1,24 +1,24 @@
-const express = require('express');
+const express = require('express'); //Web server
 const config = require('../data/config/config.js').configData;
-var session = require('express-session');
+var session = require('express-session'); //Session middleware for storing session and keeping user logged in
 
-const https = require('https');
-const fs = require('fs');
+const https = require('https'); //HTTPS
+const fs = require('fs'); //File system to access certs
 
-const helmet = require('helmet');
-const path = require('path');
-const bodyParser = require("body-parser");
+const helmet = require('helmet'); //Security practice
+const path = require('path'); //Path module to access server files
+const bodyParser = require("body-parser"); //Get post data onto req
 
 const options = {
     key: fs.readFileSync(path.join(__dirname, '../data/config/certs/key.key')),
     cert: fs.readFileSync(path.join(__dirname, '../data/config/certs/cert.crt'))
 };
 
-const Logger = require('../App/Logger').Logger;
-const log = new Logger('../data/Logs');
+const Logger = require('../App/Logger').Logger; //Logger
+const log = new Logger('../data/Logs'); //Create logger object
 
 const port = 443;
-const app = express();
+const app = express(); //Start app
 
 app.use(session({ //Add session storage later, npm install connect-session-sequelize
     secret: 'keyboard cat', //TODO: Rotate this
@@ -39,7 +39,7 @@ const server = https.createServer(options, app).listen(port, () => {
     console.log(`Example app listening at ${port}`);
 });
 
-const io = require('socket.io').listen(server);
+const io = require('socket.io').listen(server); //For communication
 
 var data = require('../App/DataProvider/DataProvider').dataProvider;
 
