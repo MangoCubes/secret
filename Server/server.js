@@ -1,6 +1,5 @@
 const express = require('express');
 const config = require('../data/config/config.js').configData;
-//const pass = require('../App/strategy').pass;
 var session = require('express-session');
 
 const https = require('https');
