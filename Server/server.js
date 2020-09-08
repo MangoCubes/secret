@@ -1,6 +1,7 @@
 const express = require('express');
 const config = require('../data/config/config.js').configData;
-const pass = require('../App/strategy').pass;
+//const pass = require('../App/strategy').pass;
+var session = require('express-session');
 
 const https = require('https');
 const fs = require('fs');
@@ -18,6 +19,13 @@ const log = new Logger('../data/Logs');
 
 const port = 443;
 const app = express();
+
+app.use(session({ //Add session storage later, npm install connect-session-sequelize
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}));
 
 app.use(helmet());
 
@@ -37,6 +45,7 @@ io.on('connection', (socket) => {
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
+    console.log(req.session);
 });
 
 app.get('/home', (req, res) => {
@@ -51,7 +60,6 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'Web', 'login.html'));
 });
 
-app.post('/login', pass.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
+app.post('/login', (req, res) => {
+
+});
