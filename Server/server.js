@@ -7,6 +7,7 @@ const fs = require('fs');
 
 const helmet = require('helmet');
 const path = require('path');
+const bodyParser = require("body-parser");
 
 const options = {
     key: fs.readFileSync(path.join(__dirname, '../data/config/certs/key.key')),
@@ -20,11 +21,17 @@ const port = 443;
 const app = express();
 
 app.use(session({ //Add session storage later, npm install connect-session-sequelize
-    secret: 'keyboard cat',
+    secret: 'keyboard cat', //TODO: Rotate this
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
 }));
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
 
 app.use(helmet());
 
@@ -60,5 +67,6 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-
+    console.log(req);
+    //console.log(req.body);
 });
