@@ -2,53 +2,60 @@
 const DataProviderBase = require('./DataProviderBase').DataProviderBase;
 
 class JSONProvider extends DataProviderBase{
-    setData(data){
-        this._data = data;
+    setData(data, key){
+        this._data[key] = data;
     }
 
-    setTemplates(templates){
-        this._templates = templates;
+    setTemplates(templates, key){
+        this._templates[key] = templates;
     }
 
-    setFields(fields){
-        this._fields = fields;
+    setFields(fields, key){
+        this._fields[key] = fields;
     }
 
-    setUsers(users){
-        this._users = users;
+    setUsers(users, key){
+        this._users[key] = users;
     }
 
-    setStructure(structure){
-        this._structure = structure;
+    setStructure(structure, key){
+        this._structure[key] = structure;
     }
 
     constructor(){
         super();
-        this.setFields(require('../../data/Test/fields.json'));
-        this.setTemplates(require('../../data/Test/templates.json'));
-        this.setData(require('../../data/Test/data.json'));
-        this.setUsers(require('../../data/Test/users.json'));
-        this.setStructure(require('../../data/Test/structure.json'));
+        this.setUsers(require(`../../data/Test/users.json`));
+        Object.keys(this._users).forEach(function(key) {
+            this.setFields(require(`../../data/Test/data/${key}/fields.json`), key);
+            this.setTemplates(require(`../../data/Test/data/${key}/templates.json`), key);
+            this.setData(require(`../../data/Test/data/${key}/data.json`), key);
+            this.setStructure(require(`../../data/Test/data/${key}/structure.json`), key);
+        });
+        
     }
     
-    getDataById(id){
-        return this._data[`${id}`];
+    getDataById(id, key){
+        return this._data[key][`${id}`];
     }
 
-    getTemplateById(id){
-        return this._templates[`${id}`];
+    getTemplateById(id, key){
+        return this._templates[key][`${id}`];
     }
 
-    getFieldById(id){
-        return this._fields[`${id}`];
+    getFieldById(id, key){
+        return this._fields[key][`${id}`];
     }
 
-    getUserById(id){
-        return this._users[`${id}`];
+    getUserById(id, key){
+        return this._users[key][`${id}`];
     }
 
-    getFolderById(id){
-        return this._structure[`${id}`];
+    getFolderById(id, key){
+        return this._structure[key][`${id}`];
+    }
+
+    getAll(){
+
     }
 }
 
