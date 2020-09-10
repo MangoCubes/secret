@@ -18,12 +18,17 @@ class JSONProvider extends DataProviderBase{
         this._users = users;
     }
 
+    setStructure(structure){
+        this._structure = structure;
+    }
+
     constructor(){
         super();
         this.setFields(require('../../data/Test/fields.json'));
         this.setTemplates(require('../../data/Test/templates.json'));
         this.setData(require('../../data/Test/data.json'));
         this.setUsers(require('../../data/Test/users.json'));
+        this.setStructure(require('../../data/Test/structure.json'));
     }
     
     getDataById(id){
@@ -40,6 +45,10 @@ class JSONProvider extends DataProviderBase{
 
     getUserById(id){
         return this._users[`${id}`];
+    }
+
+    getFolderById(id){
+        return this._structure[`${id}`];
     }
 }
 
