@@ -55,7 +55,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
+    //If logged in:
     res.sendFile(path.join(__dirname, 'Web', 'home.html'));
+    //If not, redirect to login page
 });
 
 app.get('/socket.io.js', (req, res) => {
@@ -67,6 +69,5 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    console.log(req);
     //console.log(req.body);
 });
