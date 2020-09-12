@@ -20,10 +20,6 @@ class JSONProvider extends DataProviderBase{
     constructor(dir){
         super();
         this.dir = __dirname + '/' + dir;
-        this._data = {};
-        this._templates = {};
-        this._fields = {};
-        this._structure = {};
         this.checkMainDir(this.dir);
         //this.loadUsers(require(`${this.dir}/users.json`));
         let arr = Object.keys(this._users);
@@ -34,34 +30,24 @@ class JSONProvider extends DataProviderBase{
         // this.loadStructure(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/structure.json`)), arr[i]);
     }
 
-    getDataById(id, key){
-        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/data.json`));
-        key.forEach(k => { target = target[k]; });
-        return target;
+    getDataById(id){
+        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/data.json`));
     }
 
-    getTemplateById(id, key){
-        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/templates.json`));
-        key.forEach(k => { target = target[k]; });
-        return target;
+    getTemplateById(id){
+        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/templates.json`));
     }
 
-    getFieldById(id, key){
-        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/fields.json`));
-        key.forEach(k => { target = target[k]; });
-        return target;
+    getFieldById(id){
+        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/fields.json`));
     }
 
     getUserById(id){
-        let target = JSON.parse(fs.readFileSync(`${this.dir}/users.json`));
-        key.forEach(k => { target = target[k]; });
-        return target;
+        return JSON.parse(fs.readFileSync(`${this.dir}/users.json`))[id];
     }
 
-    getStructureById(id, key){
-        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/structure.json`));
-        key.forEach(k => { target = target[k]; });
-        return target;
+    getStructureById(id){
+        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/structure.json`));
     }
 
     saveData(id, key){
