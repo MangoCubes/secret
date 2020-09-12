@@ -3,26 +3,6 @@ const DataProviderBase = require('./DataProviderBase').DataProviderBase;
 const fs = require('fs');
 
 class JSONProvider extends DataProviderBase{
-    setData(data, key){
-        this._data[key] = data;
-    }
-
-    setTemplates(templates, key){
-        this._templates[key] = templates;
-    }
-
-    setFields(fields, key){
-        this._fields[key] = fields;
-    }
-
-    setUsers(users){
-        this._users = users;
-    }
-
-    setStructure(structure, key){
-        this._structure[key] = structure;
-    }
-
     checkMainDir(dir){
         if(!fs.existsSync(`${dir}`)) fs.mkdirSync(`${dir}`, { recursive: true });
         if(!fs.existsSync(`${dir}/users.json`)) fs.writeFileSync(`${dir}/users.json`, '{}', {flag: 'wx'});
@@ -39,41 +19,79 @@ class JSONProvider extends DataProviderBase{
 
     constructor(dir){
         super();
-        dir = __dirname + '/' + dir;
+        this.dir = __dirname + '/' + dir;
         this._data = {};
         this._templates = {};
         this._fields = {};
         this._structure = {};
-        this.checkMainDir(dir);
-        this.setUsers(require(`${dir}/users.json`));
+        this.checkMainDir(this.dir);
+        //this.loadUsers(require(`${this.dir}/users.json`));
         let arr = Object.keys(this._users);
-        for(let i = 0; i < arr.length; i++){
-            this.checkFile(dir, arr[i]);
-            this.setFields(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/fields.json`)), arr[i]);
-            this.setTemplates(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/templates.json`)), arr[i]);
-            this.setData(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/data.json`)), arr[i]);
-            this.setStructure(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/structure.json`)), arr[i]);
-        }
+        for(let i = 0; i < arr.length; i++) this.checkFile(this.dir, arr[i]);
+        // this.loadFields(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/fields.json`)), arr[i]);
+        // this.loadTemplates(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/templates.json`)), arr[i]);
+        // this.loadData(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/data.json`)), arr[i]);
+        // this.loadStructure(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/structure.json`)), arr[i]);
     }
-    
+
     getDataById(id, key){
-        return this._data[key][`${id}`];
+        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/data.json`));
+        key.forEach(k => { target = target[k]; });
+        return target;
     }
 
     getTemplateById(id, key){
-        return this._templates[key][`${id}`];
+        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/templates.json`));
+        key.forEach(k => { target = target[k]; });
+        return target;
     }
 
     getFieldById(id, key){
-        return this._fields[key][`${id}`];
+        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/fields.json`));
+        key.forEach(k => { target = target[k]; });
+        return target;
     }
 
     getUserById(id){
-        return this._users[`${id}`];
+        let target = JSON.parse(fs.readFileSync(`${this.dir}/users.json`));
+        key.forEach(k => { target = target[k]; });
+        return target;
     }
 
-    getFolderById(id, key){
-        return this._structure[key][`${id}`];
+    getStructureById(id, key){
+        let target = JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/structure.json`));
+        key.forEach(k => { target = target[k]; });
+        return target;
+    }
+
+    saveData(id, key){
+    }
+
+    saveTemplate(id, key){
+    }
+
+    saveField(id, key){
+    }
+
+    saveUser(id){
+    }
+
+    saveFolder(id, key){
+    }
+    
+    editData(id, key){
+    }
+
+    editTemplate(id, key){
+    }
+
+    editField(id, key){
+    }
+
+    editUser(id){
+    }
+
+    editStructure(id, key){
     }
 }
 
