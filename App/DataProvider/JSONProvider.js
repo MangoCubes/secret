@@ -21,13 +21,17 @@ class JSONProvider extends DataProviderBase{
         super();
         this.dir = __dirname + '/' + dir;
         this.checkMainDir(this.dir);
-        //this.loadUsers(require(`${this.dir}/users.json`));
-        let arr = Object.keys(this._users);
-        for(let i = 0; i < arr.length; i++) this.checkFile(this.dir, arr[i]);
+        Object.keys(this.getAllUsers()).forEach(k => { //Repeat for all user IDs
+            this.checkFile(this.dir, k); //Check integrity of each user's data
+        });
         // this.loadFields(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/fields.json`)), arr[i]);
         // this.loadTemplates(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/templates.json`)), arr[i]);
         // this.loadData(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/data.json`)), arr[i]);
         // this.loadStructure(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/structure.json`)), arr[i]);
+    }
+
+    getAllUsers(){
+        return JSON.parse(fs.readFileSync(`${this.dir}/users.json`));
     }
 
     getDataById(id){
@@ -43,7 +47,7 @@ class JSONProvider extends DataProviderBase{
     }
 
     getUserById(id){
-        return JSON.parse(fs.readFileSync(`${this.dir}/users.json`))[id];
+        return this.getAllUsers()[id];
     }
 
     getStructureById(id){
