@@ -21,8 +21,11 @@ class JSONProvider extends DataProviderBase{
         super();
         this.dir = __dirname + '/' + dir;
         this.checkMainDir(this.dir);
-        Object.keys(this.getAllUsers()).forEach(k => { //Repeat for all user IDs
-            this.checkFile(this.dir, k); //Check integrity of each user's data
+        this.getAllUsers().then((res, rej) => {
+            if(rej) throw rej;
+            Object.keys(res).forEach(k => { //Repeat for all user IDs
+                this.checkFile(this.dir, k); //Check integrity of each user's data
+            });
         });
         // this.loadFields(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/fields.json`)), arr[i]);
         // this.loadTemplates(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/templates.json`)), arr[i]);
@@ -31,30 +34,63 @@ class JSONProvider extends DataProviderBase{
     }
 
     getAllUsers(){
-        return JSON.parse(fs.readFileSync(`${this.dir}/users.json`));
-    }
-
-    getDataById(id){
-        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/data.json`));
-    }
-
-    getTemplateById(id){
-        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/templates.json`));
-    }
-
-    getFieldById(id){
-        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/fields.json`));
+        return new Promise((res, rej) => {
+            fs.readFile(`${this.dir}/users.json`, (err, data) => {
+                if (err) rej(err);
+                else res(JSON.parse(data));
+            });
+        });
     }
 
     getUserById(id){
-        return this.getAllUsers()[id];
+        return new Promise((res, rej) => {
+            fs.readFile(`${this.dir}/users.json`, (err, data) => {
+                if (err) rej(err);
+                else res(JSON.parse(data));
+            });
+        });
+    }
+
+    getDataById(id){
+        return new Promise((res, rej) => {
+            fs.readFile(`${this.dir}/data/${id}/data.json`, (err, data) => {
+                if (err) rej(err);
+                else res(JSON.parse(data));
+            });
+        });
+    }
+
+    getTemplateById(id){
+        return new Promise((res, rej) => {
+            fs.readFile(`${this.dir}/data/${id}/templates.json`, (err, data) => {
+                if (err) rej(err);
+                else res(JSON.parse(data));
+            });
+        });
+    }
+
+    getFieldById(id){
+        return new Promise((res, rej) => {
+            fs.readFile(`${this.dir}/data/${id}/fields.json`, (err, data) => {
+                if (err) rej(err);
+                else res(JSON.parse(data));
+            });
+        });
     }
 
     getStructureById(id){
-        return JSON.parse(fs.readFileSync(`${this.dir}/data/${id}/structure.json`));
+        return new Promise((res, rej) => {
+            fs.readFile(`${this.dir}/data/${id}/structure.json`, (err, data) => {
+                if (err) rej(err);
+                else res(JSON.parse(data));
+            });
+        });
     }
 
-    saveData(id, key){
+    saveData(id, key, newData){
+        let original = this.getDataById(id);
+        original[key] = newData;
+
     }
 
     saveTemplate(id, key){
@@ -88,3 +124,8 @@ class JSONProvider extends DataProviderBase{
 module.exports = {
     JSONProvider: JSONProvider
 }
+// Writing this down so I can remember how to use async stuff if I ever forget how
+// let j = new JSONProvider('../../data/TestData/');
+// j.getAllUsers().then((res, rej) => {
+//     console.log(res);
+// });
