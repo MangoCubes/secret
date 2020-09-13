@@ -48,6 +48,17 @@ export GPG_TTY=$(tty)
 git commit -S -m ""
 ```
 
+## Code snippets
+
+- Using promise
+
+```js
+let j = new JSONProvider('../../data/TestData/');
+j.getAllUsers().then((res, rej) => {
+    console.log(res);
+});
+```
+
 ## Additional notes
 
 - Make smaller commits

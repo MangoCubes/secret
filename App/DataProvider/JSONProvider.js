@@ -141,8 +141,3 @@ class JSONProvider extends DataProviderBase{
 module.exports = {
     JSONProvider: JSONProvider
 }
-// Writing this down so I can remember how to use async stuff if I ever forget how
-// let j = new JSONProvider('../../data/TestData/');
-// j.getAllUsers().then((res, rej) => {
-//     console.log(res);
-// });
