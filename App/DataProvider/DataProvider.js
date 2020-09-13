@@ -1,13 +1,10 @@
 const path = require('path');
 const config = require('../../data/config/config').configData;
-var dataProvider;
+var DataProvider;
 
-if (config.storageType === 'JSON') dataProvider = require(path.join(__dirname, './JSONProvider')).JSONProvider;
-else if (config.storageType === 'mongodb') dataProvider = require(path.join(__dirname, './MongoDBProvider')).MongoDBProvider;
-
-var data = new dataProvider;
-
+if (config.storageType === 'JSON') DataProvider = require(path.join(__dirname, './JSONProvider')).JSONProvider;
+else if (config.storageType === 'mongodb') DataProvider = require(path.join(__dirname, './MongoDBProvider')).MongoDBProvider;
 
 module.exports = {
-    data: data
+    DataProvider: DataProvider
 }

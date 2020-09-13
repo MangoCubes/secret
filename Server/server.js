@@ -41,17 +41,35 @@ const server = https.createServer(options, app).listen(port, () => {
 
 const io = require('socket.io').listen(server); //For communication
 
-var data = require('../App/DataProvider/DataProvider').dataProvider;
+const DataType = require('../App/DataProvider/DataProvider').DataProvider;
+var data = new DataType('../../data/TestData/');
 
 io.on('connection', (socket) => {
     console.log(`New user detected: ${socket.client.id}`);
     var address = socket.handshake.address;
     log.connection(toString(address.address) + toString(address.port));
+    socket.on('userdata', (scope) => {
+        console.log("Data requested by " + socket.client.id);
+        data.getAllUsers().then((res, rej) => {
+            console.log(res);
+            socket.emit('userdatares', res);
+        });
+    })
 });
+
+io.on('datareq', (socket) => {
+
+});
+
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
     console.log(req.session);
+});
+
+app.get('/user/\\d', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Web', 'userview.html'));
 });
 
 app.get('/home', (req, res) => {

@@ -1,6 +1,8 @@
 <script src="/socket.io.js"></script>
 <script>
     var socket = io.connect('https://secret.covrt.co/', {secure: true});
-    
+    io.on('connect', (socket) => {
+        socket.emit('datareq', '/');
+    });
 </script>
 Hello!
