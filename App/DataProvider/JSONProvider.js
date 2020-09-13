@@ -88,36 +88,53 @@ class JSONProvider extends DataProviderBase{
     }
 
     saveData(id, key, newData){
-        let original = this.getDataById(id);
-        original[key] = newData;
-
+        this.getDataById(id).then((res, rej) => {
+            if(rej) throw rej;
+            res[key] = newData;
+            fs.writeFile(`${this.dir}/data/${id}/data.json`, res, err => {
+                if (err) throw err;
+            });
+        });
     }
 
-    saveTemplate(id, key){
+    saveTemplate(id, key, newData){
+        this.getTemplateById(id).then((res, rej) => {
+            if(rej) throw rej;
+            res[key] = newData;
+            fs.writeFile(`${this.dir}/data/${id}/templates.json`, res, err => {
+                if (err) throw err;
+            });
+        });
     }
 
-    saveField(id, key){
+    saveField(id, key, newData){
+        this.getFieldById(id).then((res, rej) => {
+            if(rej) throw rej;
+            res[key] = newData;
+            fs.writeFile(`${this.dir}/data/${id}/fields.json`, res, err => {
+                if (err) throw err;
+            });
+        });
     }
 
-    saveUser(id){
+    saveUser(id, newData){
+        this.getUserById(id).then((res, rej) => {
+            if(rej) throw rej;
+            res[key] = newData;
+            fs.writeFile(`${this.dir}/users.json`, res, err => {
+                if (err) throw err;
+            });
+        });
     }
 
-    saveFolder(id, key){
-    }
-    
-    editData(id, key){
-    }
-
-    editTemplate(id, key){
-    }
-
-    editField(id, key){
-    }
-
-    editUser(id){
-    }
-
-    editStructure(id, key){
+    saveStructure(id, key, newData){
+        this.getStructureById(id).then((res, rej) => {
+            if(rej) throw rej;
+            res[key] = newData;
+            fs.writeFile(`${this.dir}/data/${id}/structure.json`, res, err => {
+                if (err) throw err;
+            });
+        });
     }
 }
 
