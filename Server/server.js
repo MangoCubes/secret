@@ -48,20 +48,20 @@ io.on('connection', (socket) => {
     console.log(`New user detected: ${socket.client.id}`);
     var address = socket.handshake.address;
     log.connection(toString(address.address) + toString(address.port));
-    socket.on('userdata', (scope) => {
-        console.log("Data requested by " + socket.client.id);
-        data.getAllUsers().then((res, rej) => {
-            console.log(res);
-            socket.emit('userdatares', res);
+    socket.on('userdata', () => {
+        console.log('URL: ' + socket.handshake.url);
+        // console.log("Data requested by " + socket.client.id);
+        // data.getAllUsers().then((res, rej) => {
+        //     console.log(res);
+        //     socket.emit('userdatares', res);
+        // });
+    });
+    socket.on('folderreq', () => {
+        data.getStructureById(0).then((res, rej) => {
+            socket.emit('folderres', res['1']);
         });
-    })
+    });
 });
-
-io.on('datareq', (socket) => {
-
-});
-
-
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
@@ -76,6 +76,10 @@ app.get('/home', (req, res) => {
     //If logged in:
     res.sendFile(path.join(__dirname, 'Web', 'home.html'));
     //If not, redirect to login page
+});
+
+app.get('/scripts/reqdata.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Web', 'js', 'reqdata.js'));
 });
 
 app.get('/socket.io.js', (req, res) => {

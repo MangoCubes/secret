@@ -1,12 +1,9 @@
-<script src="/socket.io.js"></script>
-<script>
-var folder = '/';
-var socket = io.connect('https://secret.covrt.co', {secure: true});
+var location = '/';
+var socket = io.connect('https://secret.covrt.co/', {secure: true});
 socket.on('connect', () => {
-    socket.emit('folderreq', folder);
+    socket.emit('folderreq', location);
 });
 socket.on('folderres', (data) => {
-    console.log(data);
     let result = `<table style="width:100%"><tr><th>Name</th></tr>`;
     data.subfolder.forEach(k => {
         result += `<tr><td>${k}</td></tr>`;
@@ -16,5 +13,4 @@ socket.on('folderres', (data) => {
     });
     result += `</table>`;
     document.getElementById('mainTable').innerHTML = result;
-});</script>
-<div id="mainTable"></div>
+});
