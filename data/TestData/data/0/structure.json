@@ -1,17 +1,17 @@
 {
-    "0": {
+    "1": {
         "name": "Everything",
-        "subfolder": ["1", "2"],
-        "data": [],
+        "subfolder": ["2", "3"],
+        "data": ["1"],
         "permission:": 0
     },
-    "1": {
+    "2": {
         "name": "Passwords",
         "subfolder": [],
         "data": [],
         "permission:": 0
     },
-    "2": {
+    "3": {
         "name": "Identities",
         "subfolder": [],
         "data": [],
