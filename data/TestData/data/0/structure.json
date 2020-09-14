@@ -1,10 +1,20 @@
 {
-    "1":{
-        "name": "Passwords",
-        "subfolder": []
+    "0": {
+        "name": "Everything",
+        "subfolder": ["1", "2"],
+        "data": [],
+        "permission:": 0
     },
-    "2":{
+    "1": {
+        "name": "Passwords",
+        "subfolder": [],
+        "data": [],
+        "permission:": 0
+    },
+    "2": {
         "name": "Identities",
-        "subfolder": []
+        "subfolder": [],
+        "data": [],
+        "permission:": 1
     }
 }
