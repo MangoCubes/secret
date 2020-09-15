@@ -27,10 +27,6 @@ class JSONProvider extends DataProviderBase{
                 this.checkFile(this.dir, k); //Check integrity of each user's data
             });
         });
-        // this.loadFields(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/fields.json`)), arr[i]);
-        // this.loadTemplates(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/templates.json`)), arr[i]);
-        // this.loadData(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/data.json`)), arr[i]);
-        // this.loadStructure(JSON.parse(fs.readFileSync(`${dir}/data/${arr[i]}/structure.json`)), arr[i]);
     }
 
     getAllUsers(){
@@ -93,6 +89,7 @@ class JSONProvider extends DataProviderBase{
             res[key] = newData;
             fs.writeFile(`${this.dir}/data/${id}/data.json`, res, err => {
                 if (err) throw err;
+                else return 0;
             });
         });
     }
@@ -103,6 +100,7 @@ class JSONProvider extends DataProviderBase{
             res[key] = newData;
             fs.writeFile(`${this.dir}/data/${id}/templates.json`, res, err => {
                 if (err) throw err;
+                else return 0;
             });
         });
     }
@@ -113,6 +111,7 @@ class JSONProvider extends DataProviderBase{
             res[key] = newData;
             fs.writeFile(`${this.dir}/data/${id}/fields.json`, res, err => {
                 if (err) throw err;
+                else return 0;
             });
         });
     }
@@ -123,6 +122,7 @@ class JSONProvider extends DataProviderBase{
             res[key] = newData;
             fs.writeFile(`${this.dir}/users.json`, res, err => {
                 if (err) throw err;
+                else return 0;
             });
         });
     }
@@ -133,6 +133,7 @@ class JSONProvider extends DataProviderBase{
             res[key] = newData;
             fs.writeFile(`${this.dir}/data/${id}/structure.json`, res, err => {
                 if (err) throw err;
+                else return 0;
             });
         });
     }
