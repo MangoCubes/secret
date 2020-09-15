@@ -48,15 +48,7 @@ io.on('connection', (socket) => {
     console.log(`New user detected: ${socket.client.id}`);
     var address = socket.handshake.address;
     log.connection(toString(address.address) + toString(address.port));
-    socket.on('userdata', () => {
-        console.log('URL: ' + socket.handshake.url);
-        // console.log("Data requested by " + socket.client.id);
-        // data.getAllUsers().then((res, rej) => {
-        //     console.log(res);
-        //     socket.emit('userdatares', res);
-        // });
-    });
-    socket.on('folderreq', () => {
+    socket.on('folderreq', (dir) => {
         data.getStructureById(0).then((res, rej) => {
             socket.emit('folderres', res['1']);
         });
