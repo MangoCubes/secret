@@ -3,7 +3,8 @@
         "name": "Everything",
         "subfolder": ["2", "3"],
         "data": ["1"],
-        "permission:": 0
+        "permission:": 0,
+        "isroot": true
     },
     "2": {
         "name": "Passwords",
