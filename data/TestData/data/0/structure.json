@@ -3,19 +3,19 @@
         "name": "Everything",
         "subfolder": ["2", "3"],
         "data": ["1"],
-        "permission:": 0,
+        "permission": 0,
         "isroot": true
     },
     "2": {
         "name": "Passwords",
         "subfolder": [],
         "data": [],
-        "permission:": 0
+        "permission": 0
     },
     "3": {
         "name": "Identities",
         "subfolder": [],
         "data": [],
-        "permission:": 1
+        "permission": 1
     }
 }
