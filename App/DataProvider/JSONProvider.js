@@ -146,9 +146,12 @@ class JSONProvider extends DataProviderBase{
                 });
             }
             res[strid].subfolder.forEach(k => {
-                if(res[k].name === name) return res[k];
+                if(res[k].name === name) return {k: res[k]};
             });
         });
+    }
+    getStructureByDir(id, dir){ //Return all subfolders and data of a directory
+
     }
 }
 
