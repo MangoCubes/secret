@@ -137,7 +137,7 @@ class JSONProvider extends DataProviderBase{
             });
         });
     }
-    getStructureByName(id, name, strid){ //Find a folder by name in a folder, which is supplied by id
+    getSubStructureByName(id, name, strid){ //Find a folder by name in a folder, which is supplied by id
         this.getStructureById(id).then((res, rej) => {
             if(rej) throw rej;
             if(!strid) {
@@ -148,10 +148,26 @@ class JSONProvider extends DataProviderBase{
             res[strid].subfolder.forEach(k => {
                 if(res[k].name === name) return {k: res[k]};
             });
+            return false;
+        });
+    }
+    getRootStructure(id){
+        this.getStructureById(id).then((res, rej) => {
+            if(rej) throw rej;
+            Object.keys(res).forEach(k => {
+                if(res[k].isroot) return {k: res[k]};
+            });
+            return false;
         });
     }
     getStructureByDir(id, dir){ //Return all subfolders and data of a directory
-
+        let search;
+        dir.split('/').forEach(dirName => {
+            if (!dirName.length) search = this.getRootStructure(id);
+            else {
+                search = this.getSubStructureByName(id, dirName, Object.keys(search)[0]);
+            }
+        });
     }
 }
 
