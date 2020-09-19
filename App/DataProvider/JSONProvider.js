@@ -166,8 +166,10 @@ class JSONProvider extends DataProviderBase{
             if (!dirName.length) search = this.getRootStructure(id);
             else {
                 search = this.getSubStructureByName(id, dirName, Object.keys(search)[0]);
+                if(!search) return false;
             }
         });
+        return search;
     }
 }
 
